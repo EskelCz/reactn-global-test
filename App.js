@@ -10,11 +10,11 @@ function Toast (props) {
 }
 
 // Singleton that can be imported anywhere
-class ToastAPI extends Component {
+class ToastAPI {
   showToast (text) {
-    const toastList = this.global.toasts
-    toastList.push({ text: 'Some toast' })
-    this.setGlobal({ toasts: toastList })
+    setGlobal(global => ({
+      toasts: global.toasts.concat([{ text: 'Some toast' }])
+    }))
   }
 }
 export const Toasts = new ToastAPI()
